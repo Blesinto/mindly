@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const scheherazade = Scheherazade_New({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
+// const scheherazade = Scheherazade_New({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",

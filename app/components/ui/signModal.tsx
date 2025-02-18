@@ -31,10 +31,10 @@ export default function SignModal({ isOpen, onClose }: SignModalProps) {
     }));
   };
 
-  const validateEmail = (email: string) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
+  // const validateEmail = (email: string) => {
+  //   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return regex.test(email);
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
