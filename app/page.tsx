@@ -56,7 +56,7 @@ export default function Home() {
               </h1>
             </div>
             <p className='text-gray-500 text-lg lg:text-xl py-5 text-center lg:text-right'>
-              Place Where Your Stories Meet Others' Emotions.
+              Place Where Your Stories Meet Others Emotions.
             </p>
             <button
               onClick={() => setIsModalOpen(true)}
