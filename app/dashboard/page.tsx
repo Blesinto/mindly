@@ -374,8 +374,8 @@ export default function Dashboard() {
                 Why Most Programmer Burnt Out After the Age of 40
               </h2>
               <p className='text-gray-600 mb-4'>
-                I've been programming since I was 14. It started as a hobby and
-                eventually became my profession.
+                {`I've`} been programming since I was 14. It started as a hobby
+                and eventually became my profession.
               </p>
               <div className='flex items-center justify-between text-gray-500 text-sm'>
                 <div className='flex items-center space-x-4'>
