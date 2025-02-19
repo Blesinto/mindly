@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/app/lib/mongodb";
-import User from "@/app/models/user.ts";
+import User from "@/app/models/user";
 
 export async function POST(request: Request) {
   try {
