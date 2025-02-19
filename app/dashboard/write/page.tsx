@@ -47,14 +47,14 @@ export default function WritePage() {
       {/* Header */}
       <header className='border-b sticky top-0 bg-white z-50'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='flex justify-between items-center h-16'>
+          <div className='flex justify-between items-center h-14 sm:h-16'>
             {/* Logo */}
             <Link href='/dashboard' className='flex items-center'>
-              <h1 className='text-2xl font-serif italic'>Mindly</h1>
+              <h1 className='text-xl sm:text-2xl font-serif italic'>Mindly</h1>
             </Link>
 
             {/* Right Section */}
-            <div className='flex items-center space-x-4'>
+            <div className='flex items-center space-x-2 sm:space-x-4'>
               <button className='text-gray-700 hover:bg-gray-100 p-2 rounded-full'>
                 <svg
                   className='w-6 h-6'
@@ -197,33 +197,32 @@ export default function WritePage() {
       </header>
 
       {/* Main Content */}
-      <main className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-        <div className='space-y-8'>
+      <main className='max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8'>
+        <div className='space-y-6 sm:space-y-8'>
           {/* Title and Description Inputs */}
-          <div className='space-y-2'>
+          <div className='space-y-2 sm:space-y-4'>
             <input
               type='text'
               placeholder='Title'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className='text-4xl font-medium w-full outline-none placeholder-gray-500'
+              className='text-2xl sm:text-4xl font-medium w-full outline-none placeholder-gray-500'
             />
-            <input
-              type='text'
-              placeholder='Description'
+            <textarea
+              placeholder='Write your story...'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className='text-xl text-gray-600 w-full outline-none placeholder-gray-400'
+              className='text-lg sm:text-xl text-gray-600 w-full outline-none placeholder-gray-400 min-h-[300px] sm:min-h-[400px] resize-y'
             />
           </div>
 
           {/* Subtext */}
-          <p className='text-gray-600 text-lg'>
+          <p className='text-gray-600 text-base sm:text-lg'>
             Convey those emotions and thoughts.
           </p>
 
           {/* Editor Toolbar */}
-          <div className='flex flex-wrap items-center gap-1 border-t pt-4'>
+          <div className='flex flex-wrap items-center gap-1 border-t pt-3 sm:pt-4'>
             <button className='p-2 hover:bg-gray-100 rounded' title='Bold'>
               <span className='font-bold text-sm'>B</span>
             </button>
@@ -249,13 +248,25 @@ export default function WritePage() {
             </button>
             <button className='p-2 hover:bg-gray-100 rounded' title='Voice'>
               <svg className='w-4 h-4' viewBox='0 0 24 24' fill='currentColor'>
-                <path d='M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z' />
+                <path d='M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z' />
               </svg>
             </button>
             <button className='p-2 hover:bg-gray-100 rounded' title='Add'>
               <svg className='w-4 h-4' viewBox='0 0 24 24' fill='currentColor'>
                 <path d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z' />
               </svg>
+            </button>
+          </div>
+
+          {/* Post Button */}
+          <div className='flex justify-end mt-4 sm:mt-6'>
+            <button
+              className='w-full sm:w-auto bg-blue-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base'
+              onClick={() => {
+                // TODO: Implement post creation logic
+                console.log("Creating post with:", { title, description });
+              }}>
+              Post
             </button>
           </div>
         </div>
