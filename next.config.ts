@@ -4,9 +4,7 @@
  */
 
 const nextConfig = {
-  experimental: {
-    allowImportingTsExtensions: true,
-  },
+  experimental: {},
 };
 
-module.exports = nextConfig;
+export default nextConfig;
