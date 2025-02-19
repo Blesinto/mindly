@@ -98,7 +98,9 @@ export default function Dashboard() {
             {/* Right Section */}
             <div className='flex items-center space-x-2 sm:space-x-4'>
               {/* Write Button - Text hidden on mobile */}
-              <button className='flex items-center space-x-0 sm:space-x-2 px-2 sm:px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-full'>
+              <Link
+                href='/dashboard/write'
+                className='flex items-center space-x-0 sm:space-x-2 px-2 sm:px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-full'>
                 <svg
                   className='w-5 h-5'
                   fill='none'
@@ -112,7 +114,7 @@ export default function Dashboard() {
                   />
                 </svg>
                 <span className='hidden sm:inline'>Write</span>
-              </button>
+              </Link>
 
               <button className='text-gray-700 hover:bg-gray-100 p-2 rounded-full'>
                 <svg

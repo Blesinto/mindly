@@ -123,7 +123,7 @@ export default function SignModal({ isOpen, onClose }: SignModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+    <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4'>
       {/* Success Message */}
       {isSuccess && (
         <div className='fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-slide-in'>
@@ -131,19 +131,19 @@ export default function SignModal({ isOpen, onClose }: SignModalProps) {
         </div>
       )}
 
-      <div className='bg-white rounded-lg p-8 w-[400px] relative'>
+      <div className='bg-white rounded-lg p-4 sm:p-8 w-full max-w-[400px] relative'>
         {/* Close button */}
         <button
           onClick={onClose}
-          className='absolute right-4 top-4 text-gray-500 hover:text-gray-700'
+          className='absolute right-2 sm:right-4 top-2 sm:top-4 text-gray-500 hover:text-gray-700'
           aria-label='Close modal'>
           ✕
         </button>
 
         {/* Logo */}
-        <div className='text-center mb-8'>
-          <h2 className='text-3xl font-serif mb-2'>Mindly</h2>
-          <p className='text-sm text-gray-600'>
+        <div className='text-center mb-6 sm:mb-8'>
+          <h2 className='text-2xl sm:text-3xl font-serif mb-2'>Mindly</h2>
+          <p className='text-xs sm:text-sm text-gray-600'>
             {isSignIn
               ? "Inspire Someone by your Stories and Writing"
               : "Show the world your emotions in words."}
@@ -159,7 +159,7 @@ export default function SignModal({ isOpen, onClose }: SignModalProps) {
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className='space-y-6'>
+        <form onSubmit={handleSubmit} className='space-y-4 sm:space-y-6'>
           {!isSignIn && (
             <div>
               <label className='block text-sm mb-2'>Full Name</label>
@@ -238,8 +238,8 @@ export default function SignModal({ isOpen, onClose }: SignModalProps) {
         </form>
 
         {/* Toggle Sign in/up */}
-        <div className='text-center mt-6'>
-          <p className='text-sm text-gray-600'>
+        <div className='text-center mt-4 sm:mt-6'>
+          <p className='text-xs sm:text-sm text-gray-600'>
             {isSignIn ? "Don't Have An Account? " : "Already Have An Account? "}
             <button
               type='button'
