@@ -4,11 +4,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { HiArrowRight } from "react-icons/hi";
-import SignModal from "./components/ui/signModal.tsx";
+import SignModal from "./components/ui/signModal";
 import { Scheherazade_New } from "next/font/google";
-import MobileNav from "./components/navigation/MobileNav.tsx";
-import DesktopNav from "./components/navigation/DesktopNav.tsx";
-import Footer from "./components/navigation/Footer.tsx";
+import MobileNav from "./components/navigation/MobileNav";
+import DesktopNav from "./components/navigation/DesktopNav";
+import Footer from "./components/navigation/Footer";
 
 const scheherazade = Scheherazade_New({
   subsets: ["latin"],
@@ -18,11 +18,15 @@ const scheherazade = Scheherazade_New({
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthenticated] = useState(false);
 
   return (
     <div className='min-h-screen font-[family-name:var(--font-geist-sans)]'>
       {/* Desktop Navigation */}
-      <DesktopNav setIsModalOpen={setIsModalOpen} />
+      <DesktopNav
+        setIsModalOpen={setIsModalOpen}
+        isAuthenticated={isAuthenticated}
+      />
 
       {/* Mobile Navigation */}
       <MobileNav
