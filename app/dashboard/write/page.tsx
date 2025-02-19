@@ -234,7 +234,7 @@ export default function WritePage() {
               <span className='underline text-sm'>U</span>
             </button>
             <button className='p-2 hover:bg-gray-100 rounded' title='Quote'>
-              <span className='text-sm'>"</span>
+              <span className='text-sm'>&quot;</span>
             </button>
             <button className='p-2 hover:bg-gray-100 rounded' title='Strike'>
               <span className='line-through text-sm'>S</span>
