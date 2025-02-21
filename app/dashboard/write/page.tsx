@@ -5,17 +5,17 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface Post {
-  _id?: string;
-  title: string;
-  description: string;
-  author: {
-    name: string;
-    email: string;
-  };
-  createdAt: string;
-  readingTime: string;
-}
+// interface Post {
+//   _id?: string;
+//   title: string;
+//   description: string;
+//   author: {
+//     name: string;
+//     email: string;
+//   };
+//   createdAt: string;
+//   readingTime: string;
+// }
 
 export default function WritePage() {
   const router = useRouter();
