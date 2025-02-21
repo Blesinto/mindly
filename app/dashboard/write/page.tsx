@@ -5,6 +5,18 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+interface Post {
+  _id?: string;
+  title: string;
+  description: string;
+  author: {
+    name: string;
+    email: string;
+  };
+  createdAt: string;
+  readingTime: string;
+}
+
 export default function WritePage() {
   const router = useRouter();
   const [title, setTitle] = useState("");
@@ -41,6 +53,46 @@ export default function WritePage() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleSubmit = async () => {
+    if (!title || !description) {
+      alert("Please fill in both title and description");
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          author: {
+            name: user?.name,
+            email: user?.email,
+          },
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        router.push("/dashboard");
+      } else {
+        // Display validation errors if any
+        if (data.details && Array.isArray(data.details)) {
+          alert(data.details.join("\n"));
+        } else {
+          alert(data.error || "Failed to create post");
+        }
+      }
+    } catch (error) {
+      console.error("Error creating post:", error);
+      alert("Failed to create post");
+    }
+  };
 
   return (
     <div className='min-h-screen bg-white'>
@@ -262,10 +314,7 @@ export default function WritePage() {
           <div className='flex justify-end mt-4 sm:mt-6'>
             <button
               className='w-full sm:w-auto bg-blue-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base'
-              onClick={() => {
-                // TODO: Implement post creation logic
-                console.log("Creating post with:", { title, description });
-              }}>
+              onClick={handleSubmit}>
               Post
             </button>
           </div>

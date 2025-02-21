@@ -13,21 +13,47 @@ interface UserData {
   lastLogin: string;
 }
 
+interface Post {
+  _id: string;
+  title: string;
+  description: string;
+  author: {
+    name: string;
+    email: string;
+  };
+  createdAt: string;
+  readingTime: string;
+}
+
 export default function Dashboard() {
   const router = useRouter();
   const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch("/api/post");
+        const data = await response.json();
+        if (data.success) {
+          setPosts(data.posts);
+        }
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+      setLoading(false);
+    };
+
     const userData = localStorage.getItem("userData");
     if (!userData) {
       router.push("/");
       return;
     }
     setUser(JSON.parse(userData));
-    setLoading(false);
+    fetchPosts();
   }, [router]);
 
   // Close dropdown when clicking outside
@@ -362,45 +388,55 @@ export default function Dashboard() {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           {/* Main Content Area */}
           <div className='md:col-span-2 space-y-6'>
-            {/* Sample Post */}
-            <article className='border-b pb-6'>
-              <div className='flex items-center space-x-2 mb-4'>
-                <div className='w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center'>
-                  R
+            {posts.map((post) => (
+              <article key={post._id} className='border-b pb-6'>
+                <div className='flex items-center space-x-2 mb-4'>
+                  <div className='w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center'>
+                    {post.author.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <h3 className='font-medium'>{post.author.name}</h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className='font-medium'>Reena Chaturvedi</h3>
+                <h2 className='text-xl font-bold mb-2'>{post.title}</h2>
+                <p className='text-gray-600 mb-4'>
+                  {post.description.length > 200
+                    ? `${post.description.substring(0, 200)}...`
+                    : post.description}
+                </p>
+                <div className='flex items-center justify-between text-gray-500 text-sm'>
+                  <div className='flex items-center space-x-4'>
+                    <span>
+                      {new Date(post.createdAt).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "long",
+                      })}
+                    </span>
+                    <span className='hidden sm:inline'>·</span>
+                    <span className='hidden sm:inline'>{post.readingTime}</span>
+                  </div>
+                  <button className='hover:text-gray-700'>
+                    <svg
+                      className='w-5 h-5'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'>
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth='2'
+                        d='M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z'
+                      />
+                    </svg>
+                  </button>
                 </div>
+              </article>
+            ))}
+            {posts.length === 0 && (
+              <div className='text-center text-gray-500 py-10'>
+                No posts yet. Why not create one?
               </div>
-              <h2 className='text-xl font-bold mb-2'>
-                Why Most Programmer Burnt Out After the Age of 40
-              </h2>
-              <p className='text-gray-600 mb-4'>
-                {`I've`} been programming since I was 14. It started as a hobby
-                and eventually became my profession.
-              </p>
-              <div className='flex items-center justify-between text-gray-500 text-sm'>
-                <div className='flex items-center space-x-4'>
-                  <span>2 days ago</span>
-                  <span className='hidden sm:inline'>·</span>
-                  <span className='hidden sm:inline'>5 min read</span>
-                </div>
-                <button className='hover:text-gray-700'>
-                  <svg
-                    className='w-5 h-5'
-                    fill='none'
-                    stroke='currentColor'
-                    viewBox='0 0 24 24'>
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth='2'
-                      d='M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z'
-                    />
-                  </svg>
-                </button>
-              </div>
-            </article>
+            )}
           </div>
 
           {/* Sidebar */}
