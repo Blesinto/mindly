@@ -3,6 +3,7 @@
 import { NextResponse } from "next/server";
 import Post from "@/app/models/Post";
 import { connectToDatabase } from "@/app/lib/mongodb";
+import mongoose from "mongoose";
 
 export async function POST(request: Request) {
   try {
