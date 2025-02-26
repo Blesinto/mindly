@@ -35,6 +35,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  deleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // Handle JSON serialization
