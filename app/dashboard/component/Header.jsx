@@ -5,25 +5,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-interface UserData {
-  id: string;
-  email: string;
-  name: string;
-  role: string;
-  lastLogin: string;
-}
-
-interface HeaderProps {
-  hideWriteButton?: boolean;
-  hideSearchBar?: boolean;
-}
-
 export default function DashboardHeader({
   hideWriteButton = false,
   hideSearchBar = false,
-}: HeaderProps) {
+}) {
   const router = useRouter();
-  const [user, setUser] = useState<UserData | null>(null);
+  const [user, setUser] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -38,14 +25,14 @@ export default function DashboardHeader({
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event) => {
       const dropdown = document.getElementById("profile-dropdown");
       const avatar = document.getElementById("profile-avatar");
       if (
         dropdown &&
         avatar &&
-        !dropdown.contains(event.target as Node) &&
-        !avatar.contains(event.target as Node)
+        !dropdown.contains(event.target) &&
+        !avatar.contains(event.target)
       ) {
         setIsProfileDropdownOpen(false);
       }

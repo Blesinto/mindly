@@ -1,14 +1,11 @@
 /** @format */
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/app/lib/mongodb";
 import Post from "@/app/models/Post";
 import { ObjectId } from "mongodb";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { postId: string } }
-) {
+export async function GET(request, { params }) {
   try {
     const { postId } = params;
 
@@ -21,7 +18,9 @@ export async function GET(
 
     await connectToDatabase();
 
-    const post = await Post.findOne({ _id: new ObjectId(postId) })
+    const post = await Post.findOne({
+      _id: ObjectId.createFromHexString(postId),
+    })
       .populate("author", "name email profileImage")
       .lean();
 
@@ -60,10 +59,7 @@ export async function GET(
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { postId: string } }
-) {
+export async function DELETE(request, { params }) {
   try {
     const { postId } = params;
 
@@ -78,7 +74,9 @@ export async function DELETE(
     await connectToDatabase();
 
     // Delete the post
-    const result = await Post.deleteOne({ _id: new ObjectId(postId) });
+    const result = await Post.deleteOne({
+      _id: ObjectId.createFromHexString(postId),
+    });
 
     if (result.deletedCount === 0) {
       return NextResponse.json(

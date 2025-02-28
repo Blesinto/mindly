@@ -4,17 +4,7 @@ import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
 import { NavLinks } from "@/app/constants/navigation";
 
-interface MobileNavProps {
-  isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
-  setIsModalOpen: (value: boolean) => void;
-}
-
-export default function MobileNav({
-  isOpen,
-  setIsOpen,
-  setIsModalOpen,
-}: MobileNavProps) {
+export default function MobileNav({ isOpen, setIsOpen, setIsModalOpen }) {
   return (
     <nav className='lg:hidden bg-white shadow-md'>
       <div className='flex justify-between items-center px-6 py-4'>

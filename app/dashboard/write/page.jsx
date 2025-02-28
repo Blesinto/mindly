@@ -5,25 +5,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-// interface Post {
-//   _id?: string;
-//   title: string;
-//   description: string;
-//   author: {
-//     name: string;
-//     email: string;
-//   };
-//   createdAt: string;
-//   readingTime: string;
-// }
-
 export default function WritePage() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [user, setUser] = useState<{ name: string; email: string } | null>(
-    null
-  );
+  const [user, setUser] = useState(null);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -37,14 +23,14 @@ export default function WritePage() {
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event) => {
       const dropdown = document.getElementById("profile-dropdown");
       const avatar = document.getElementById("profile-avatar");
       if (
         dropdown &&
         avatar &&
-        !dropdown.contains(event.target as Node) &&
-        !avatar.contains(event.target as Node)
+        !dropdown.contains(event.target) &&
+        !avatar.contains(event.target)
       ) {
         setIsProfileDropdownOpen(false);
       }

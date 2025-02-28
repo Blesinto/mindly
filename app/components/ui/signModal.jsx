@@ -5,12 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface SignModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export default function SignModal({ isOpen, onClose }: SignModalProps) {
+export default function SignModal({ isOpen, onClose }) {
   const router = useRouter();
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState({
@@ -23,7 +18,7 @@ export default function SignModal({ isOpen, onClose }: SignModalProps) {
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false); // State for success message
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -36,7 +31,7 @@ export default function SignModal({ isOpen, onClose }: SignModalProps) {
   //   return regex.test(email);
   // };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);

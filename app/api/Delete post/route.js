@@ -4,10 +4,7 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/app/lib/mongodb";
 import Post from "@/app/models/Post";
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request, { params }) {
   try {
     await connectToDatabase();
     const postId = params.id;
@@ -33,7 +30,7 @@ export async function DELETE(
   } catch (error) {
     console.error("Error deleting post:", error);
     return NextResponse.json(
-      { success: false, message: "Error deleting post" },
+      { success: false, error: "Failed to delete post" },
       { status: 500 }
     );
   }

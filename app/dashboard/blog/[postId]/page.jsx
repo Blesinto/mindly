@@ -4,31 +4,11 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
 import DashboardHeader from "../../component/Header";
-
-interface Post {
-  _id: string;
-  title: string;
-  description: string;
-  content: string;
-  author: {
-    name: string;
-    email: string;
-    profileImage?: string;
-  };
-  formattedDate: string;
-  readTime: string;
-  stats: {
-    views: number;
-    likes: number;
-    comments: number;
-  };
-}
 
 export default function BlogPost() {
   const params = useParams();
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

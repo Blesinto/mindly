@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/app/lib/mongodb";
 import User from "@/app/models/user";
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
     const { email, password, name } = await request.json();
 

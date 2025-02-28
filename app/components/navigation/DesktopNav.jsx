@@ -4,15 +4,7 @@ import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
 import { NavLinks } from "@/app/constants/navigation";
 
-interface DesktopNavProps {
-  setIsModalOpen: (value: boolean) => void;
-  isAuthenticated: boolean;
-}
-
-export default function DesktopNav({
-  setIsModalOpen,
-  isAuthenticated,
-}: DesktopNavProps) {
+export default function DesktopNav({ setIsModalOpen, isAuthenticated }) {
   return (
     <nav className='hidden lg:flex justify-between items-center px-20 py-6 shadow-md bg-white'>
       <Link href='/' className='text-2xl font-bold'>

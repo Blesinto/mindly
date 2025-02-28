@@ -1,11 +1,6 @@
 /** @format */
 
-interface NavLink {
-  label: string;
-  path: string;
-}
-
-export const NavLinks: NavLink[] = [
+export const NavLinks = [
   { label: "Home", path: "/" },
   { label: "Features", path: "/features" },
   { label: "About", path: "/About" },

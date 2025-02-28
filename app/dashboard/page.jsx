@@ -5,37 +5,17 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import DashboardHeader from "./component/Header";
 
-interface UserData {
-  id: string;
-  email: string;
-  name: string;
-  role: string;
-  lastLogin: string;
-}
-
-interface Post {
-  _id: string;
-  title: string;
-  description: string;
-  author: {
-    name: string;
-    email: string;
-  };
-  createdAt: string;
-  readingTime: string;
-}
-
 export default function Dashboard() {
   const router = useRouter();
-  const [user, setUser] = useState<UserData | null>(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState([]);
   const searchParams = useSearchParams();
   const justPosted = searchParams.get("posted");
-  const [deleteConfirmation, setDeleteConfirmation] = useState<{
-    isOpen: boolean;
-    postId: string | null;
-  }>({ isOpen: false, postId: null });
+  const [deleteConfirmation, setDeleteConfirmation] = useState({
+    isOpen: false,
+    postId: null,
+  });
 
   const fetchPosts = async () => {
     try {
@@ -89,7 +69,7 @@ export default function Dashboard() {
     }
   }, [justPosted]);
 
-  const handleDeletePost = async (postId: string) => {
+  const handleDeletePost = async (postId) => {
     if (!postId) {
       console.error("Post ID is missing");
       return;

@@ -1,11 +1,18 @@
+/**
+ * eslint-disable @typescript-eslint/no-unused-vars
+ *
+ * @format
+ */
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 /** @format */
 
 import { NextResponse } from "next/server";
 import Post from "@/app/models/Post";
 import { connectToDatabase } from "@/app/lib/mongodb";
-import mongoose from "mongoose";
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
     await connectToDatabase();
     const body = await request.json();
@@ -35,13 +42,13 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, post });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error creating post:", error);
 
     // Handle validation errors
     if (error.name === "ValidationError") {
       const validationErrors = Object.values(error.errors).map(
-        (err: any) => err.message
+        (err) => err.message
       );
       return NextResponse.json(
         {
@@ -70,7 +77,7 @@ export async function GET() {
     const posts = await Post.find({}).sort({ createdAt: -1 }).lean();
 
     return NextResponse.json({ success: true, posts });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error fetching posts:", error);
     return NextResponse.json(
       {

@@ -22,6 +22,36 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/About/page.jsx",
+    "app/layout.jsx",
+    "app/page.jsx",
+    "app/write/page.jsx",
+    "app/models/user.js",
+    "app/models/Post.js",
+    "app/dashboard/write/page.jsx",
+    "app/lib/mongodb.js",
+    "app/features/page.jsx",
+    "app/dashboard/page.jsx",
+    "app/dashboard/component/layout.jsx",
+    "app/dashboard/component/Header.jsx",
+    "app/dashboard/blog/[postId]/page.jsx",
+    "app/contact/page.jsx",
+    "app/constants/navigation.js",
+    "app/components/ui/signModal.jsx",
+    "app/components/navigation/MobileNav.jsx",
+    "app/components/navigation/Footer.jsx",
+    "app/components/navigation/DesktopNav.jsx",
+    "app/api/post/route.js",
+    "app/api/post/[postId]/route.js",
+    "app/api/Delete-post/route.js",
+    "app/api/auth/register/route.js",
+    "app/api/auth/login/route.js",
+    "models/post.js"
+  ],
   "exclude": ["node_modules"]
 }
